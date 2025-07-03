@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom"
 import Navbar from "../Components/Navbar"
 
 
@@ -8,7 +9,11 @@ function MainLayout (){
     return(
         <div>
             <Navbar></Navbar>
-            <p>reza</p>
+            <div>
+                <Outlet></Outlet>
+            </div>
+
+
         </div>
     )
 }

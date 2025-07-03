@@ -4,12 +4,18 @@ import {
 } from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
 import PageNotFound from "../Components/PageNotFound";
+import LoginPage from "../Pages/LoginPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    // children: 
+    children: [
+      {
+        path: 'login',
+        element: <LoginPage></LoginPage>
+      }
+    ]
   },
   {
     path: '*',

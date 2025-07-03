@@ -25,7 +25,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    to='login'
+                    to='/login'
                     className={({ isActive }) => isActive ? 'btn btn-outline btn-primary' : ''}
                 >Login</NavLink>
             </li>
