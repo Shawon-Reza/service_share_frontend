@@ -1,7 +1,26 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../Context/AuthProvider'
+import { span } from 'framer-motion/client'
 
 const Navbar = () => {
+    const navigate = useNavigate()
+    const { SignInUser, logOut,setSignInUser } = useContext(AuthContext)
+    console.log("From Navbar", SignInUser)
+
+
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+                // Optional: show a toast or redirect
+                console.log('User signed out');
+                 setSignInUser(null)
+            })
+            .catch(error => {
+                console.error('Sign out error:', error);
+            });
+    }
+
 
     const menu = (
         <>
@@ -24,10 +43,25 @@ const Navbar = () => {
                 >Dashboard</NavLink>
             </li>
             <li>
-                <NavLink
-                    to='/login'
+                {SignInUser ?
+                    (
+                        <span
+                            onClick={handleSignOut}
+                        >Sign Out</span>
+                    )
+                    :
+                    (
+                        <NavLink to={'/registration'}>
+                            Sign In
+                        </NavLink>
+                    )
+                }
+
+
+                {/* <NavLink
+                    to='/registration'
                     className={({ isActive }) => isActive ? 'btn btn-outline btn-primary' : ''}
-                >Login</NavLink>
+                >{SignInUser ? 'Sign Out': "Sign Up"}</NavLink> */}
             </li>
         </>
     )
@@ -45,7 +79,7 @@ const Navbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Service Share</a>
+                <a className="btn btn-ghost text-xl" onClick={() => { navigate('/') }}>Service Share</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

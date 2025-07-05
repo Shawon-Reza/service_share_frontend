@@ -4,7 +4,9 @@ import {
 } from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
 import PageNotFound from "../Components/PageNotFound";
-import LoginPage from "../Pages/LoginPage";
+import LoginPage from "../Pages/Registration";
+import Registration from "../Pages/Registration";
+import Login from "../Pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -12,8 +14,12 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     children: [
       {
+        path: 'registration',
+        element: <Registration></Registration>
+      },
+      {
         path: 'login',
-        element: <LoginPage></LoginPage>
+        element: <Login></Login>
       }
     ]
   },
