@@ -7,6 +7,7 @@ import { AuthContext } from '../Context/AuthProvider'
 import { toast } from 'react-toastify'
 import { sendEmailVerification, updateProfile } from 'firebase/auth'
 import { Link } from 'react-router-dom'
+import { Footer } from '../Components/Footer'
 
 const Registration = () => {
   const { createUserWithEmail } = useContext(AuthContext)
@@ -35,7 +36,6 @@ const Registration = () => {
         })
           .then(() => {
             toast.success(`Welcome, ${formData.displayName}!`)
-
             sendEmailVerification(user)
               .then(() => {
                 toast.info('Verification email sent! Please check your inbox.')
@@ -69,12 +69,16 @@ const Registration = () => {
 
   return (
     <motion.div
-      className='min-h-screen p-5 my-auto'
+      className='flex flex-col min-h-screen lg:h-screen p-5'
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className='flex flex-col-reverse sm:flex-row h-full'>
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Middle Content */}
+      <div className='flex flex-col-reverse sm:flex-row flex-grow min-h-0 overflow-y-'>
         <div className='sm:w-1/2 flex justify-center items-center'>
           <form className='flex flex-col w-full px-10' onSubmit={handleSignUpForm}>
             <label htmlFor="displayName" className='mb-1 mt-3 text-sm font-medium text-gray-700'>
@@ -131,10 +135,9 @@ const Registration = () => {
               </span>
             </p>
 
-
             <button
               type="submit"
-              className={`btn mt-10 btn-soft btn-success `}
+              className={`btn mt-10 btn-soft btn-success mb-5`}
               disabled={loading}
             >
               {loading ? 'Creating Account...' : 'Sign Up'}
@@ -142,10 +145,13 @@ const Registration = () => {
           </form>
         </div>
 
-        <div className='sm:w-1/2'>
+        <div className='sm:w-1/2 flex justify-center items-center'>
           <Lottie animationData={LoginPCLottie} loop={true} />
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </motion.div>
   )
 }

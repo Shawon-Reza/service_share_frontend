@@ -40,7 +40,7 @@ export default function CategorySwiper() {
 
     return (
         <div className="relative pb-14"> {/* Add bottom padding to push pagination down */}
-        <h3 className='text-3xl font-bold text-center p-2'>Categories</h3>
+        <h3 className='text-3xl font-bold text-center p-2 md:pt-4'>CATEGORIES</h3>
             <Swiper
                 effect="coverflow"
                 grabCursor={true}

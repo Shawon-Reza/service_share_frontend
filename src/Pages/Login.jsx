@@ -5,6 +5,8 @@ import { AuthContext } from '../Context/AuthProvider';
 import { toast } from 'react-toastify';
 import Lottie from 'lottie-react';
 import LoginPCLottie from '../assets/LoginPCLottie.json';
+import Navbar from '../Components/Navbar';
+import { Footer } from '../Components/Footer';
 
 const Login = () => {
   const { SignInWithEmailPass } = useContext(AuthContext);
@@ -41,12 +43,15 @@ const Login = () => {
 
   return (
     <motion.div
-      className="min-h-screen p-5 my-auto"
+      className="flex flex-col lg:h-screen min-h-screen p-5 my-auto"
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="flex flex-col-reverse sm:flex-row h-full">
+      <div>
+        <Navbar></Navbar>
+      </div>
+      <div className="flex flex-col-reverse sm:flex-row min-h-0 flex-grow">
         {/* Form */}
         <div className="sm:w-1/2 flex justify-center items-center">
           <form className="flex flex-col w-full px-10" onSubmit={handleSigninForm}>
@@ -92,9 +97,12 @@ const Login = () => {
         </div>
 
         {/* Animation */}
-        <div className="sm:w-1/2">
+        <div className="sm:w-1/2 flex justify-center items-center">
           <Lottie animationData={LoginPCLottie} loop={true} />
         </div>
+      </div>
+      <div>
+        <Footer></Footer>
       </div>
     </motion.div>
   );

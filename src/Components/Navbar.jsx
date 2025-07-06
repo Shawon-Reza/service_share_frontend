@@ -38,6 +38,12 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
+                    to='/addServiceForm'
+                    className={({ isActive }) => isActive ? 'btn btn-outline btn-primary' : ''}
+                >Add Service</NavLink>
+            </li>
+            <li>
+                <NavLink
                     to='dashboard'
                     className={({ isActive }) => isActive ? 'btn btn-outline btn-primary' : ''}
                 >Dashboard</NavLink>
